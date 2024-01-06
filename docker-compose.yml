@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  localstack:
+    image: localstack/localstack:2.3.2
+    ports:
+      - '4566:4566'
+      - '4510-4559:4510-4559'
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - '${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack'
